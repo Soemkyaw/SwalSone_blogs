@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class BlogFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->unique()->name(),
+            'body' => fake()->paragraph(),
+            'category_id' => Category::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }
