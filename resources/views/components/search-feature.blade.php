@@ -1,9 +1,15 @@
-<form
- class="input-group mb-2"
- action=""
- >
-    <input type="text" name="search" class="form-control" placeholder="Search Here ..." aria-label="Recipient's username"
-        aria-describedby="button-addon2">
+<form class="input-group mb-2" action="">
+    <input type="text" name="search" class="form-control" value="{{ request('search') }}" placeholder="Search Here ..."
+        aria-label="Recipient's username" aria-describedby="button-addon2">
+
+    @if (request('category'))
+       <input type="hidden" name="category" value="{{ request('category') }}">
+    @endif
+
+    @if (request('author'))
+        <input type="hidden" name="author" value="{{ request('author') }}">
+    @endif
+
     <button class="btn btn-outline-primary" type="submit" id="button-addon2">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
             stroke="currentColor" width="24" height="24">

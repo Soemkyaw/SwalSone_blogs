@@ -10,13 +10,19 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::latest();
-        if (request('search')) {
-            $blogs = $blogs->where('title','like','%'. request('search').'%');
-        }
         return view("blogs.index",[
-            "blogs"=> $blogs->paginate(6),
+            "blogs"=> Blog::latest()->filter(request(['search','category','author']))->paginate(6),
             "categories" => Category::all()
+        ]);
+    }
+
+    public function show($blog)
+    {
+        $blog = str_replace("_"," ", $blog);
+        $blog = Blog::where("title", $blog)->first();
+        return view("blogs.show", [
+            "blog" => $blog,
+            "randomBlogs" => Blog::inRandomOrder()->limit(3)->get()
         ]);
     }
 }

@@ -1,7 +1,7 @@
 @props(['blogs'])
-<section id="blogs">
+<section>
     <div class=" container p-5">
-        
+
         <div class=" row g-3">
             @foreach ($blogs as $blog)
                 <x-blog :blog="$blog"></x-blog>

@@ -8,3 +8,4 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 Route::get("/",[BlogController::class,"index"]);
+Route::get("/blog/{blog}",[BlogController::class,"show"]);

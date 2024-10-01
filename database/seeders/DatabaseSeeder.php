@@ -25,6 +25,9 @@ class DatabaseSeeder extends Seeder
         User::truncate();
         Blog::truncate();
         Category::truncate();
-        Blog::factory()->count(10)->create();
+        Category::factory()->create(['name'=>'Personal Development']);
+        Category::factory()->create(['name'=>'Entertainment']);
+        Blog::factory()->count(5)->create(["category_id"=>1]);
+        Blog::factory()->count(5)->create(["category_id"=>2]);
     }
 }
