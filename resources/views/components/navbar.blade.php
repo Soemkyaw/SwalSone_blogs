@@ -16,6 +16,19 @@
                     <li class="nav-item">
                         <a class="nav-link " aria-disabled="true">About us</a>
                     </li>
+                    @auth
+                        {{-- <li class="nav-item">
+                            <a href="/logout" class="nav-link text-danger" aria-disabled="true">logout</a>
+                        </li> --}}
+                        <form action="/logout" method="POST">
+                            @csrf
+                            <input type="submit" class="btn btn-link text-decoration-none text-danger" value="Logout">
+                        </form>
+                    @else
+                        <li class="nav-item">
+                            <a href="/register" class="nav-link " aria-disabled="true">Register</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
