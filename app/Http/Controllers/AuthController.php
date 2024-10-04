@@ -37,7 +37,7 @@ class AuthController extends Controller
             "password" => ["required", "min:5", "max:100"],
         ]);
         if (auth()->attempt($attributes)) {
-            return redirect("/")->with("loginSuccess","Welcome From SwalSone Blogs.");
+            return redirect("/")->with("toastSuccess","Welcome From SwalSone Blogs.");
         }else{
             return redirect()->back()->withErrors(["email"=> "User Credentials don't match."]);
         }
@@ -47,6 +47,6 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return redirect("/")->with("logoutSuccess","You have been logged out");
+        return redirect("/")->with("toastSuccess","You have been logged out");
     }
 }

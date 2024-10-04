@@ -29,8 +29,19 @@
                 </div>
             </div>
         </div>
+        {{-- comments start  --}}
+        @auth
+            <x-comments :comments="$blog->comments()->paginate(5)"
+             :blog="$blog" :cmtcount="$blog->comments()->count()"></x-comments>
+        @else
+            <p class=" py-5 text-center">
+                Please <a href="/login" >log in</a> to view and participate in the discussion.
+            </p>
+        @endauth
+        {{-- comments end  --}}
     </main>
     <!-- blog section end  -->
+
 
     <!-- random bolgs start  -->
     <section class=" py-5">

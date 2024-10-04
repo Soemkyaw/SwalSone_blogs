@@ -8,7 +8,7 @@
         </script>
     @endif
 
-    @if (session('loginSuccess'))
+    @if (session('toastSuccess'))
         <script>
             const Toast = Swal.mixin({
                 toast: true,
@@ -24,7 +24,7 @@
 
             Toast.fire({
                 icon: 'success',
-                title: '{{ session('loginSuccess') }}',
+                title: '{{ session('toastSuccess') }}',
             })
         </script>
     @endif
