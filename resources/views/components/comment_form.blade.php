@@ -1,4 +1,4 @@
-<form action="/comment" method="POST" class=" mb-3">
+<form action="/blog/{{ $blog->id }}/comment" method="POST" class=" mb-3">
     @csrf
     <div class=" d-flex justify-content-between my-3">
         <h4 class=" fw-bold fs-5">Reader Dicussion</h4>
