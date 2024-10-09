@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string('title')->unique();
-            $table->text('body')->nullable();
+            $table->text('content')->nullable();
+            $table->enum("status",['pending','approve','cancel'])->default("pending");
             $table->foreignId('category_id')->nullable();
             $table->foreignId('user_id')->nullable();
+            $table->boolean("is_deleted")->default(false);
             $table->timestamps();
         });
     }

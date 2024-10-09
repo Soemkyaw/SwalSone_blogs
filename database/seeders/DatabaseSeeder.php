@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        User::truncate();
-        Blog::truncate();
-        Category::truncate();
+        // User::truncate();
+        // Blog::truncate();
+        // Category::truncate();
         Category::factory()->create(['name'=>'Personal Development']);
         Category::factory()->create(['name'=>'Entertainment']);
         Blog::factory()->count(5)->create(["category_id"=>1]);

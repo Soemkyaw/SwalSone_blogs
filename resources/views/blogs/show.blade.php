@@ -44,7 +44,7 @@
                     </div>
                 </div>
                 <div class=" col-lg-6">
-                    <p>{{ $blog->body }}</p>
+                    <p>{{ $blog->content }}</p>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                                     </span>
                                 </div>
                                 <p>
-                                    {{ Str::words($blog->body, 15, '...') }}
+                                    {{ Str::words($blog->content, 15, '...') }}
                                 </p>
                                 <div class=" d-flex justify-content-between align-items-center">
                                     <a href="/?author={{ str_replace(' ', '_', $blog->user->author_name) }}"

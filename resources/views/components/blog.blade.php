@@ -11,7 +11,7 @@
                 </span>
             </div>
             <p>
-                {{ Str::words($blog->body, 15, '...') }}
+                {{ Str::words($blog->content, 15, '...') }}
             </p>
             <div class=" d-flex justify-content-between align-items-center">
                 <a href="/?author={{ str_replace(' ','_',$blog->user->author_name) }}" class=" text-success text-decoration-none">{{ $blog->user->author_name }} </a>

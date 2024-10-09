@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Mail\SubscriberMail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -21,5 +22,10 @@ Route::post("/register",[AuthController::class,"store"]);
 Route::get("/login",[AuthController::class,"login"]);
 Route::post("/login",[AuthController::class,"loginUser"]);
 Route::post("/logout",[AuthController::class,"logout"]);
+
+// admin dashboard
+Route::get("/admin/dashboard", [AdminController::class,'index']);
+Route::get('/admin/blog/list', [AdminController::class, "blogList"]);
+Route::post('/admin/blog/list/{blog}/status', [AdminController::class, "statusHandler"]);
 
 
