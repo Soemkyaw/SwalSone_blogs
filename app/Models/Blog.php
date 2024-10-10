@@ -9,6 +9,8 @@ class Blog extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['status'];
+
 
     public function scopeFilter($query,$filter)
     {

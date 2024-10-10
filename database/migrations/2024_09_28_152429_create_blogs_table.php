@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->enum("status",['pending','approve','cancel'])->default("pending");
             $table->foreignId('category_id')->nullable();
-            $table->foreignId('user_id')->nullable();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->nullable();
             $table->boolean("is_deleted")->default(false);
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -26,8 +27,29 @@ class AdminController extends Controller
         ]);
     }
 
-    public function statusHandler(Blog $blog)
+    public function statusHandler(Blog $blog,Request $request)
     {
-        dd(request()->all());
+        $request->validate([
+            "status" => ["required",'string','in:approve,cancel']
+        ]);
+
+        $blog->update([
+            "status" => $request->status
+        ]);
+
+        return response()->json(['status'=>"success",'blogStatus'=> $request->status,'message'=> 'Blog status updated successfully!']);
+    }
+
+    public function userList()
+    {
+        return view("admin.user-list",[
+            "users" => User::latest()->get()
+        ]);
+    }
+
+    public function userDestroy(User $user)
+    {
+        $user->delete();
+        return response()->json(['status' => 'success']);
     }
 }

@@ -7,6 +7,8 @@
     <title>Responsive Bootstrap 5 Dashboard</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -54,8 +56,8 @@
     <div class="sidebar d-none d-md-block">
         <h4 class="text-white text-center">Dashboard</h4>
         <a href="/admin/dashboard">Home</a>
-        <a href="/admin/blog/list">Blogs</a>
-        <a href="#reports">Users</a>
+        <a href="/admin/blog/list">Blog List</a>
+        <a href="/admin/user/list">User List</a>
         <a href="#settings">Settings</a>
     </div>
 
@@ -71,10 +73,10 @@
                     <a class="nav-link" href="/admin/dashboard">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#analytics">Blogs</a>
+                    <a class="nav-link" href="/admin/blog/list">Blog List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#reports">Users</a>
+                    <a class="nav-link" href="/admin/user/list">User List</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#settings">Settings</a>
@@ -112,6 +114,7 @@
         {{ $slot }}
 
     </div>
+
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

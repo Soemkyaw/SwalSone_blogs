@@ -76,14 +76,17 @@
                                             <li><a class="dropdown-item" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal{{ $blog->id }}">View</a></li>
                                             <li>
-                                                <form action="/admin/blog/list/{{ $blog->id }}/status" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class=" dropdown-item">
-                                                        Approve
-                                                    </button>
-                                                </form>
+                                                <button value="approve" data-blog-id="{{ $blog->id }}"
+                                                    class="statusHandler dropdown-item">
+                                                    Approve
+                                                </button>
                                             </li>
-                                            <li><a class="dropdown-item" href="#">Cancel</a></li>
+                                            <li>
+                                                <button value="cancel" data-blog-id="{{ $blog->id }}"
+                                                    class="statusHandler dropdown-item">
+                                                    Cancel
+                                                </button>
+                                            </li>
                                         </ul>
                                     </div>
                                 </td>
@@ -91,7 +94,7 @@
                                 <td>{{ $blog->category->name }}</td>
                                 <td>{{ $blog->user->author_name }}</td>
                                 <td class=" text-center">
-                                    <span
+                                    <span id="current-blog-{{ $blog->id }}"
                                         class=" badge @if ($blog->status === 'pending') bg-warning @elseif ($blog->status === 'cancel') bg-danger @else bg-success @endif">
                                         {{ $blog->status }}
                                     </span>
@@ -102,6 +105,41 @@
                 </table>
             </div>
         </div>
+
+        <script>
+            $(".statusHandler").on('click', function() {
+                let status = $(this).val();
+                let blogId = $(this).data("blog-id");
+
+                $.ajax({
+                    url: '/admin/blog/list/' + blogId + '/status',
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}", // CSRF token
+                        status: status
+                    },
+                    success: function(response) {
+                        if (response.status === "success") {
+                            let currentBlogStatus = $('#current-blog-' +blogId); // Select the status badge by blog I
+                            currentBlogStatus.removeClass('bg-success bg-danger bg-warning');
+
+                            if (response.blogStatus === 'cancel') {
+                                currentBlogStatus.addClass('bg-danger').text('cancel');
+                            } else {
+                                currentBlogStatus.addClass('bg-success').text('approve');
+                            }
+
+                            Swal.fire({
+                                text: response.message,
+                                icon: "success"
+                            });
+                        }
+
+                    }
+                })
+
+            })
+        </script>
 
 
 </x-dashboard-layout>
