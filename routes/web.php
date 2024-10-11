@@ -28,6 +28,7 @@ Route::get("/admin/dashboard", [AdminController::class,'index']);
 Route::get('/admin/blog/list', [AdminController::class, "blogList"]);
 Route::post('/admin/blog/list/{blog}/status', [AdminController::class, "statusHandler"]);
 Route::get('/admin/user/list', [AdminController::class, "userList"]);
+Route::post('/admin/user/list/{user}/role', [AdminController::class, "roleHandler"]);
 Route::post('/admin/{user}/delete', [AdminController::class, "userDestroy"]);
 
 

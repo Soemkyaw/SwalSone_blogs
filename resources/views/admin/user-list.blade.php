@@ -65,7 +65,15 @@
                                 <td>{{ $user->author_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->blogs->count() }}</td>
-                                <td>{{ $user->is_admin ? 'admin' : 'user' }}</td>
+                                {{-- <td>{{ $user->is_admin ? 'admin' : 'user' }}</td> --}}
+                                <td>
+                                    <select class=" form-select roleHandler" data-user-id="{{ $user->id }}">
+                                        <option  {{ $user->is_admin == false ? 'selected' : '' }} value="0">User
+                                        </option>
+                                        <option  {{ $user->is_admin == true ? 'selected' : '' }} value="1">Admin
+                                        </option>
+                                    </select>
+                                </td>
                                 <td class=" text-center">
                                     <button class="btn btn-sm btn-danger"
                                         onclick="confirmDelete({{ $user->id }})">Delete</button>
@@ -108,5 +116,31 @@
                     }
                 });
             }
+        </script>
+        <script>
+            // $(document).ready(function() {
+                $(".roleHandler").on('change',function(){
+                    let selectedRole = $(this).val();
+                    let userId = $(this).data('user-id');
+
+                    $.ajax({
+                        url: `/admin/user/list/${userId}/role`,
+                        type: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}", // CSRF token
+                            is_admin: selectedRole
+                        },
+                        success: function(response){
+                            if (response.status == "success") {
+                                Swal.fire({
+                                text: response.message,
+                                icon: "success"
+                            });
+                            }
+                        }
+                    })
+                })
+
+            // })
         </script>
 </x-dashboard-layout>

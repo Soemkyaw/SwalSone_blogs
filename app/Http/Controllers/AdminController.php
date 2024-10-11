@@ -47,6 +47,14 @@ class AdminController extends Controller
         ]);
     }
 
+    public function roleHandler(User $user,Request $request){
+        $user->update([
+            'is_admin' => $request->is_admin
+        ]);
+
+        return response()->json(['status' => "success", "is_admin" => $request->is_admin, 'message' => "User role updated successfully!"]);
+    }
+
     public function userDestroy(User $user)
     {
         $user->delete();
