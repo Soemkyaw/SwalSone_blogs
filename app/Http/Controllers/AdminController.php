@@ -60,4 +60,11 @@ class AdminController extends Controller
         $user->delete();
         return response()->json(['status' => 'success']);
     }
+
+    public function profile()
+    {
+        return view('admin.profile',[
+            'user' => auth()->user()
+        ]);
+    }
 }

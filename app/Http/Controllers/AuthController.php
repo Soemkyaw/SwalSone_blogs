@@ -15,11 +15,13 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $attributes =$request->validate([
             "author_name" => ["required","string","min:3","max:225"],
             "email" => ["required", "email", "min:6", "max:225"],
             "password"=> ["required","confirmed","min:5","max:100"],
         ]);
+        $attributes['slug'] = str_replace(' ', '-', $attributes['author_name']);
         $user = User::create($attributes);
         auth()->login($user);
         return redirect("/")->with("success","Account register success.");

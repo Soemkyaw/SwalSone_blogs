@@ -54,7 +54,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar d-none d-md-block">
-        <h4 class="text-white text-center">Dashboard</h4>
+        <a href="/" class="text-white text-center fs-4"><span class=" text-danger">Swal Sone</span> Blogs</a>
         <a href="/admin/dashboard">Home</a>
         <a href="/admin/blog/list">Blog List</a>
         <a href="/admin/user/list">User List</a>
@@ -90,7 +90,7 @@
         <!-- Navbar for large screens -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Admin Panel</a>
+                <a class="navbar-brand">Admin Panel</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav1"
                     aria-controls="navbarNav1" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -101,10 +101,10 @@
                             <a class="nav-link" aria-current="page" href="/admin/dashboard">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Profile</a>
+                            <a class="nav-link" href="/admin/profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Logout</a>
+                            <a class="nav-link" href="/logout">Logout</a>
                         </li>
                     </ul>
                 </div>

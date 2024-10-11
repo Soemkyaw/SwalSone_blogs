@@ -65,7 +65,6 @@
                                 <td>{{ $user->author_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->blogs->count() }}</td>
-                                {{-- <td>{{ $user->is_admin ? 'admin' : 'user' }}</td> --}}
                                 <td>
                                     <select class=" form-select roleHandler" data-user-id="{{ $user->id }}">
                                         <option  {{ $user->is_admin == false ? 'selected' : '' }} value="0">User
@@ -118,7 +117,6 @@
             }
         </script>
         <script>
-            // $(document).ready(function() {
                 $(".roleHandler").on('change',function(){
                     let selectedRole = $(this).val();
                     let userId = $(this).data('user-id');
@@ -143,4 +141,5 @@
 
             // })
         </script>
+    </div>
 </x-dashboard-layout>

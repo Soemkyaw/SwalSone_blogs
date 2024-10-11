@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\f;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -34,31 +35,46 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(f $f)
+    public function show(User $user)
     {
-        //
+        return view('user.show',[
+            'user' => $user
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(f $f)
+    public function edit(User $user)
     {
-        //
+        return view('user.edit', [
+            "user" => $user
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, f $f)
+    public function update(User $user,Request $request)
     {
-        //
+        $attributes =$request->validate([
+            'author_name' => ['required'],
+            'email' => ['required'],
+            'gender' => ['required', 'string', 'in:male,female,other'],
+            'phone_no' => ['required', 'max:20'],
+            'address' => ['required'],
+        ]);
+        $attributes['slug'] = str_replace(' ', '-', $attributes['author_name']);
+
+        $user->update($attributes);
+
+        return redirect('user/'.$user->slug.'/profile')->with('success','Your account has been updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(f $f)
+    public function destroy()
     {
         //
     }

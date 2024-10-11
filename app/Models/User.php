@@ -21,7 +21,11 @@ class User extends Authenticatable
         'author_name',
         'email',
         'password',
-        "is_admin"
+        "is_admin",
+        'slug',
+        'phone_no',
+        'gender',
+        'address'
     ];
 
     public function blogs()

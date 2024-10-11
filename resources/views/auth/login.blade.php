@@ -33,7 +33,7 @@
                             </button>
                         </div>
                         <div class=" text-center">
-                            <p>Don't have an account? <a href="/signin">Sign up now</a></p>
+                            <p>Don't have an account? <a href="/register">Sign up now</a></p>
                         </div>
                     </form>
                 </div>
