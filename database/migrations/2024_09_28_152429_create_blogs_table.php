@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('slug')->unique();
+            $table->string('thumbnail')->nullable();
             $table->text('content')->nullable();
             $table->enum("status",['pending','approve','cancel'])->default("pending");
             $table->foreignId('category_id')->nullable();

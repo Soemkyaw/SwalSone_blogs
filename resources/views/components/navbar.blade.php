@@ -23,7 +23,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/user/{{ auth()->user()->slug }}/profile">Profile</a></li>
-                                <li><a class="dropdown-item" href="#scrollspyHeading4">Blogs</a></li>
+                                <li><a class="dropdown-item" href="/{{ auth()->user()->slug }}/blogs">Blogs</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <form action="/logout" method="POST">
                             @csrf

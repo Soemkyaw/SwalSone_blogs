@@ -15,7 +15,7 @@
             </div>
             <div class="mt-3 row pb-5">
                 <div class=" col-lg-6">
-                    <img src="{{ asset('images/free_logo.png') }}" class="img-fluid">
+                    <img src="{{ asset('storage/'.$blog->thumbnail) }}" class="img-fluid" class=" img-fixed-size img-thumbnail">
                     <div class="">
                         <div class="my-3">
                             <a href="/?author={{ str_replace(' ', '_', $blog->user->author_name) }}"
@@ -24,20 +24,32 @@
                         <div class=" fs-6  rounded mb-3 text-muted">{{ $blog->created_at->format('M j, Y, h:i A') }}
                         </div>
                         @auth
-                            <form action="/blog/{{ $blog->id }}/subscription" method="POST">
-                                @csrf
-                                @if (auth()->user()->isSubscribed($blog))
-                                    <button class=" btn btn-danger">
-                                        Unsubscribe
-                                    </button>
-                                @else
-                                    <button class=" btn btn-warning">
-                                        Subscribe
-                                    </button>
-                                @endif
-                            </form>
+                            @if (auth()->user() == $blog->user)
+                                <div>
+                                    <a href="/blog/{{ $blog->slug }}/edit" class=" btn btn-primary">Edit</a>
+                                    <form action="/blog/{{ $blog->slug }}/destroy" method="POST" class=" d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class=" btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            @else
+                                <form action="/blog/{{ $blog->id }}/subscription" method="POST">
+                                    @csrf
+                                    @if (auth()->user()->isSubscribed($blog))
+                                        <button class=" btn btn-danger">
+                                            Unsubscribe
+                                        </button>
+                                    @else
+                                        <button class=" btn btn-warning">
+                                            Subscribe
+                                        </button>
+                                    @endif
+                                </form>
+                            @endif
                         @else
-                            <span class="d-inline-block" tabindex="0" data-bs-placement="bottom" data-bs-toggle="tooltip" data-bs-title="U need to login first.">
+                            <span class="d-inline-block" tabindex="0" data-bs-placement="bottom" data-bs-toggle="tooltip"
+                                data-bs-title="U need to login first.">
                                 <button class="btn btn-warning" type="button" disabled>Subscribe</button>
                             </span>
                         @endauth

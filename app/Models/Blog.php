@@ -9,7 +9,16 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'content',
+        'category_id',
+        'user_id',
+        'status',
+        'thumbnail',
+        'is_deleted'
+    ];
 
 
     public function scopeFilter($query,$filter)

@@ -25,7 +25,8 @@ class User extends Authenticatable
         'slug',
         'phone_no',
         'gender',
-        'address'
+        'address',
+        'avatar'
     ];
 
     public function blogs()

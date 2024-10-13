@@ -15,7 +15,6 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $attributes =$request->validate([
             "author_name" => ["required","string","min:3","max:225"],
             "email" => ["required", "email", "min:6", "max:225"],

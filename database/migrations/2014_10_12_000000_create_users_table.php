@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('author_name')->unique();
             $table->string('slug')->unique();
             $table->string('email')->unique();
+            $table->string('avatar')->nullable();
             $table->string('password');
             $table->enum("gender",['male','female','other'])->default("other");
             $table->string('phone_no')->unique()->nullable();

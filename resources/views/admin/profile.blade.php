@@ -15,10 +15,11 @@
                         <div class="col-md-8">
                             <h5 class="card-title">{{ $user->author_name }}</h5>
                             <p class="card-text"><strong>Email:</strong> {{ $user->email }}</p>
-                            <p class="card-text"><strong>Phone:</strong> (123) 456-7890</p>
-                            <p class="card-text"><strong>Address:</strong> 1234 Elm Street, Springfield, IL 62704</p>
+                            <p class="card-text"><strong>Gender:</strong> {{ Str::ucfirst($user->gender) }}</p>
+                            <p class="card-text"><strong>Phone:</strong> {{ $user->phone_no }}</p>
+                            <p class="card-text"><strong>Address:</strong> {{ $user->address }}</p>
                             <p class="card-text"><strong>Joined:</strong> {{ $user->created_at->format('M j, Y') }}</p>
-                            <a href="#" class="btn btn-primary">Edit Profile</a>
+                            <a href="/admin/profile/{{ $user->slug }}/edit" class="btn btn-primary">Edit Profile</a>
                             <a href="{{ url()->previous() }}" class="btn btn-secondary">Go Back</a>
                         </div>
                     </div>
@@ -26,4 +27,5 @@
             </div>
         </div>
     </div>
+    <x-alerts></x-alerts>
 </x-dashboard-layout>

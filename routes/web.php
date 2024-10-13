@@ -9,7 +9,12 @@ use App\Http\Controllers\UserController;
 
 // blog
 Route::get("/",[BlogController::class,"index"]);
-Route::get("/blog/{blog}",[BlogController::class,"show"]);
+Route::get('/blog/create', [BlogController::class, 'create']);
+Route::get("/blog/{blog:slug}",[BlogController::class,"show"]);
+Route::post("/blog/store",[BlogController::class,"store"]);
+Route::get('/blog/{blog:slug}/edit', [BlogController::class,'edit']);
+Route::post('/blog/{blog:slug}/update', [BlogController::class,'update']);
+Route::delete('/blog/{blog:slug}/destroy', [BlogController::class, 'destroy']);
 Route::post("/blog/{blog}/subscription", [BlogController::class, 'subscriptionHandler']);
 
 // comment
@@ -19,6 +24,7 @@ Route::post('/blog/{blog}/comment', [CommentController::class, 'store']);
 Route::get('/user/{user:slug}/profile',[UserController::class,'show']);
 Route::get('/user/{user:slug}/edit',[UserController::class,'edit']);
 Route::post('/user/{user:slug}/update',[UserController::class,'update']);
+Route::get('/{user:slug}/blogs',[UserController::class,'blogs']);
 
 // auth
 Route::get("/register",[AuthController::class,"register"]);
@@ -35,5 +41,7 @@ Route::get('/admin/user/list', [AdminController::class, "userList"]);
 Route::post('/admin/user/list/{user}/role', [AdminController::class, "roleHandler"]);
 Route::post('/admin/{user}/delete', [AdminController::class, "userDestroy"]);
 Route::get("/admin/profile", [AdminController::class, 'profile']);
+Route::get("/admin/profile/{user:slug}/edit", [AdminController::class, 'profileEdit']);
+Route::post("/admin/profile/{user:slug}/update", [AdminController::class, 'profileUpdate']);
 
 

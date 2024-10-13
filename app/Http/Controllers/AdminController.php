@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -66,5 +67,19 @@ class AdminController extends Controller
         return view('admin.profile',[
             'user' => auth()->user()
         ]);
+    }
+
+    public function profileEdit(User $user)
+    {
+        return view('admin.profile-edit', compact('user'));
+    }
+
+    public function profileUpdate(User $user,StoreUserRequest $request)
+    {
+        $attributes = $request->all();
+        $attributes['slug'] = str_replace(' ', '-', $attributes['author_name']);
+        $user->update($attributes);
+
+        return redirect('/admin/profile')->with('success','Your account has been updated!');
     }
 }

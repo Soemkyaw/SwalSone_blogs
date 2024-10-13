@@ -37,3 +37,12 @@
 .colored-toast .swal2-html-container {
     color: white;
 }
+
+.img-fixed-size {
+    width: 100%;
+    /* Full width of the container */
+    height: 200px;
+    /* Fixed height */
+    object-fit: cover;
+    /* Ensures image is cropped and maintains aspect ratio */
+}

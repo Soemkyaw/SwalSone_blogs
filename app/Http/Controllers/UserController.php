@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserRequest;
 use App\Models\f;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -42,6 +43,13 @@ class UserController extends Controller
         ]);
     }
 
+    public function blogs(User $user)
+    {
+        return view('user.blogs',[
+            'blogs' => $user->blogs()->latest()->paginate(6)
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
@@ -55,15 +63,9 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(User $user,Request $request)
+    public function update(User $user,StoreUserRequest $request)
     {
-        $attributes =$request->validate([
-            'author_name' => ['required'],
-            'email' => ['required'],
-            'gender' => ['required', 'string', 'in:male,female,other'],
-            'phone_no' => ['required', 'max:20'],
-            'address' => ['required'],
-        ]);
+        $attributes = $request->all();
         $attributes['slug'] = str_replace(' ', '-', $attributes['author_name']);
 
         $user->update($attributes);
