@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UserController;
 
@@ -43,5 +44,13 @@ Route::post('/admin/{user}/delete', [AdminController::class, "userDestroy"]);
 Route::get("/admin/profile", [AdminController::class, 'profile']);
 Route::get("/admin/profile/{user:slug}/edit", [AdminController::class, 'profileEdit']);
 Route::post("/admin/profile/{user:slug}/update", [AdminController::class, 'profileUpdate']);
+
+// category
+Route::get('/admin/category/list', [CategoryController::class, 'index']);
+Route::get('/admin/category/create', [CategoryController::class, 'create']);
+Route::post('/admin/category/store', [CategoryController::class, 'store']);
+Route::get('/admin/{category:slug}/edit', [CategoryController::class, 'edit']);
+Route::patch('/admin/{category:slug}/update', [CategoryController::class, 'update']);
+Route::delete('/admin/{category:slug}/destroy', [CategoryController::class, 'destroy']);
 
 

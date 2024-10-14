@@ -9,6 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -58,7 +59,7 @@
         <a href="/admin/dashboard">Home</a>
         <a href="/admin/blog/list">Blog List</a>
         <a href="/admin/user/list">User List</a>
-        <a href="#settings">Settings</a>
+        <a href="/admin/category/list">Category List</a>
     </div>
 
     <!-- Navbar for small screens -->
@@ -79,7 +80,7 @@
                     <a class="nav-link" href="/admin/user/list">User List</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#settings">Settings</a>
+                    <a class="nav-link" href="/admin/category/list">Category List</a>
                 </li>
             </ul>
         </div>
@@ -115,6 +116,7 @@
 
     </div>
 
+    <x-alerts></x-alerts>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
