@@ -4,6 +4,7 @@
             <div class="row">
                 <div class="container col-lg-6 col-md-8 col-10 mx-auto mt-5">
                     <div class="card">
+                        {{-- @dd(auth()->check()) --}}
                         <div class="card-header bg-primary text-white">
                             <h3 class="mb-0">User Details</h3>
                         </div>

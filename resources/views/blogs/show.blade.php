@@ -95,7 +95,7 @@
                                 <div class=" d-flex justify-content-between align-items-center">
                                     <a href="/?author={{ str_replace(' ', '_', $blog->user->author_name) }}"
                                         class=" text-success text-decoration-none">{{ $blog->user->author_name }} </a>
-                                    <a href="/blog/{{ str_replace(' ', '_', $blog->title) }}"
+                                    <a href="/blog/{{ $blog->slug }}"
                                         class=" bg-primary-subtle fs-6 px-2 rounded text-decoration-none">Read More</a>
                                 </div>
                             </div>

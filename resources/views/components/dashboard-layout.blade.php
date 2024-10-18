@@ -105,7 +105,10 @@
                             <a class="nav-link" href="/admin/profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button class="btn btn-link text-decoration-none text-danger">Logout</button>
+                            </form>
                         </li>
                     </ul>
                 </div>

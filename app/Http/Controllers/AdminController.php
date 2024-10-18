@@ -11,8 +11,12 @@ class AdminController extends Controller
 {
     public function index()
     {
+        $blogStatus = Blog::whereIn('status', ['approve', 'cancel', 'pending'])->get()->groupBy('status');
         return view("admin.dashboard",[
-            "blogs" => Blog::latest()->get()
+            "blogs" => Blog::latest()->get(),
+            "approveBlog" => $blogStatus->get('approve'),
+            "cancelBlogs" => $blogStatus->get('cancel'),
+            "pendingBlogs" => $blogStatus->get('pending'),
         ]);
     }
 

@@ -33,7 +33,7 @@
                 <div class="card overflow-hidden">
                     <div class="row card-body py-5 px-3 align-items-center bg-success-subtle">
                         <div class=" col-8">
-                            <h5 class="card-title">Total - <span>50</span></h5>
+                            <h5 class="card-title">Total - <span>{{ $approveBlog->count() }}</span></h5>
                             <p class="card-text fw-bold">Approved Blogs</p>
                         </div>
                         <div class=" col-4 text-end">
@@ -54,7 +54,7 @@
                 <div class="card overflow-hidden">
                     <div class="row card-body py-5 px-3 align-items-center bg-warning-subtle">
                         <div class=" col-8">
-                            <h5 class="card-title">Total - <span>50</span></h5>
+                            <h5 class="card-title">Total - <span>{{ $pendingBlogs->count() }}</span></h5>
                             <p class="card-text fw-bold">Pending Blogs</p>
                         </div>
                         <div class=" col-4 text-end">
@@ -75,8 +75,8 @@
                 <div class="card overflow-hidden">
                     <div class="row card-body py-5 px-3 align-items-center bg-danger-subtle">
                         <div class=" col-8">
-                            <h5 class="card-title ">Total - <span>50</span></h5>
-                            <p class="card-text fw-bold">Cancle Blogs</p>
+                            <h5 class="card-title ">Total - <span>{{ $cancelBlogs->count() }}</span></h5>
+                            <p class="card-text fw-bold">Cancel Blogs</p>
                         </div>
                         <div class=" col-4 text-end">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

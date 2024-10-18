@@ -38,6 +38,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $this->authorize('view', $user);
         return view('user.show',[
             'user' => $user
         ]);
@@ -45,6 +46,7 @@ class UserController extends Controller
 
     public function blogs(User $user)
     {
+        $this->authorize('blogs', $user);
         return view('user.blogs',[
             'blogs' => $user->blogs()->latest()->paginate(6)
         ]);
@@ -55,6 +57,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('edit', $user);
         return view('user.edit', [
             "user" => $user
         ]);
