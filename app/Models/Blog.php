@@ -40,9 +40,9 @@ class Blog extends Model
         $query->when($filter['author'] ?? false, function ($query, $author) {
             // dd($author);
             $query->whereHas('user', function ($query) use ($author) {
-                $author = str_replace('_', ' ', $author);
+                // $author = str_replace('_', ' ', $author);
                 // dd($author);
-                $query->where('author_name', $author);
+                $query->where('slug', $author);
             });
         });
     }

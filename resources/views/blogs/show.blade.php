@@ -18,13 +18,13 @@
                     <img src="{{ asset('storage/'.$blog->thumbnail) }}" class="img-fluid" class=" img-fixed-size img-thumbnail">
                     <div class="">
                         <div class="my-3">
-                            <a href="/?author={{ str_replace(' ', '_', $blog->user->author_name) }}"
+                            <a href="/?author={{ $blog->user->slug }}"
                                 class=" text-success fs-4 fw-bold  text-decoration-none">{{ $blog->user->author_name }}</a>
                         </div>
                         <div class=" fs-6  rounded mb-3 text-muted">{{ $blog->created_at->format('M j, Y, h:i A') }}
                         </div>
                         @auth
-                            @if (auth()->user() == $blog->user)
+                            @if (auth()->id() === $blog->user_id)
                                 <div>
                                     <a href="/blog/{{ $blog->slug }}/edit" class=" btn btn-primary">Edit</a>
                                     <form action="/blog/{{ $blog->slug }}/destroy" method="POST" class=" d-inline">
@@ -62,7 +62,8 @@
         </div>
         {{-- comments start  --}}
         @auth
-            <x-comments :comments="$blog->comments()->latest()->paginate(5)" :blog="$blog"></x-comments>
+            {{-- <x-comments :comments="$blog->comments()->latest()->paginate(5)" :blog="$blog"></x-comments> --}}
+            <x-comments :comments="$comments" :blog="$blog"></x-comments>
         @else
             <p class=" py-5 text-center">
                 Please <a href="/login">log in</a> to view and participate in the discussion.
@@ -93,8 +94,9 @@
                                     {{ Str::words($blog->content, 15, '...') }}
                                 </p>
                                 <div class=" d-flex justify-content-between align-items-center">
-                                    <a href="/?author={{ str_replace(' ', '_', $blog->user->author_name) }}"
-                                        class=" text-success text-decoration-none">{{ $blog->user->author_name }} </a>
+                                    <a href="/?author={{ $blog->user->slug }}" class=" text-success text-decoration-none">
+                                        {{ $blog->user->author_name }}
+                                    </a>
                                     <a href="/blog/{{ $blog->slug }}"
                                         class=" bg-primary-subtle fs-6 px-2 rounded text-decoration-none">Read More</a>
                                 </div>

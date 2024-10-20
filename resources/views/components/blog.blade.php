@@ -17,7 +17,7 @@
                 {{ Str::words($blog->content, 15, '...') }}
             </p>
             <div class=" d-flex justify-content-between align-items-center">
-                <a href="/?author={{ str_replace(' ','_',$blog->user->author_name) }}" class=" text-success text-decoration-none">{{ $blog->user->author_name }} </a>
+                <a href="/?author={{ $blog->user->slug }}" class=" text-success text-decoration-none">{{ $blog->user->author_name }} </a>
                 <a href="/blog/{{ $blog->slug }}" class=" bg-primary-subtle fs-6 px-2 rounded text-decoration-none">Read More</a>
             </div>
         </div>

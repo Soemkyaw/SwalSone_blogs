@@ -14,7 +14,7 @@ class AdminController extends Controller
         $blogStatus = Blog::whereIn('status', ['approve', 'cancel', 'pending'])->get()->groupBy('status');
         return view("admin.dashboard",[
             "blogs" => Blog::latest()->get(),
-            "approveBlog" => $blogStatus->get('approve'),
+            "approveBlogs" => $blogStatus->get('approve'),
             "cancelBlogs" => $blogStatus->get('cancel'),
             "pendingBlogs" => $blogStatus->get('pending'),
         ]);
@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function blogList()
     {
         return view("admin.blog-list", [
-            "blogs" => Blog::latest()->get()
+            "blogs" => Blog::latest()->with('user','category')->get()
         ]);
     }
 
@@ -48,7 +48,7 @@ class AdminController extends Controller
     public function userList()
     {
         return view("admin.user-list",[
-            "users" => User::latest()->get()
+            "users" => User::latest()->with('blogs')->get()
         ]);
     }
 

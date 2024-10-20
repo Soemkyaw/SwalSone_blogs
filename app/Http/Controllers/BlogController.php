@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreBlogRequest;
 use App\Models\Blog;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreBlogRequest;
 
 class BlogController extends Controller
 {
     public function index()
     {
+        $blogs = Blog::latest()->where('status','approve')->filter(request(['search','category','author']));
         return view("blogs.index",[
-            'blogs' => Blog::latest()->where('status','approve')->filter(request(['search','category','author']))->paginate(6),
+            'blogs' => $blogs->with('category','user')->paginate(6),
             "categories" => Category::all()
         ]);
     }
 
     public function show(Blog $blog)
     {
+        $comments = Comment::where('blog_id', $blog->id)->with('blog','user')->latest();
         return view("blogs.show", [
             "blog" => $blog,
-            "randomBlogs" => Blog::inRandomOrder()->limit(3)->get()
+            "randomBlogs" => Blog::inRandomOrder()->with('category','user')->limit(3)->get(),
+            'comments' =>   $comments->paginate(5)
         ]);
     }
 
