@@ -25,7 +25,7 @@ class StoreBlogRequest extends FormRequest
             'title' => ['required','min:3'],
             'content' => ['required'],
             'category_id' => ['required','exists:categories,id'],
-            'thumbnail' => ['file']
+            'thumbnail' => ['file','required']
         ];
     }
 }

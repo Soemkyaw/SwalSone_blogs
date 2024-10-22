@@ -8,19 +8,26 @@
                             <h3 class="mb-0">Account Edit</h3>
                         </div>
                         <div class="card-body">
-                            <form action="/user/{{ $user->slug }}/update" method="POST" class="row" enctype="multipart/form-data">
+                            <form action="/user/{{ $user->slug }}/update" method="POST" class="row"
+                                enctype="multipart/form-data">
                                 @csrf
-                                <div class="col-md-4">
-                                    <img src="{{ asset('images/free_logo.png') }}" width="200px" alt="User Image"
-                                        class="img-thumbnail mb-2">
-                                    <input type="file" class=" form-control">
-                                    {{-- <input type="file" name="profile_image" class=" form-control"> --}}
+                                <div class="col-md-4 ">
+                                    <div class=" text-center mb-2">
+                                        @if ($user->avatar)
+                                            <img src="{{ asset('storage/' . $user->avatar) }}" width="200px"
+                                                alt="User Image" class="img-thumbnail">
+                                        @else
+                                            <img src="{{ asset('images/user-avatar.png') }}" width="200px"
+                                                alt="User Image" class="img-thumbnail">
+                                        @endif
+                                    </div>
+                                    <input type="file" name="avatar" class=" form-control">
                                 </div>
                                 <div class="col-md-8">
                                     <div class=" mb-3">
                                         <label class=" mb-2 fw-bold text-muted">Username :</label>
                                         <input type="text" name="author_name" class="form-control"
-                                            placeholder="Jhon Doe" value="{{ old('author_name',$user->author_name) }}">
+                                            placeholder="Jhon Doe" value="{{ old('author_name', $user->author_name) }}">
                                         @error('author_name')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -28,7 +35,7 @@
                                     <div class=" mb-3">
                                         <label class=" mb-2 fw-bold text-muted">Email :</label>
                                         <input type="email" name="email" class="form-control"
-                                            placeholder="JhonDoe@gmail.com" value="{{ old('email',$user->email) }}">
+                                            placeholder="JhonDoe@gmail.com" value="{{ old('email', $user->email) }}">
                                         @error('email')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -36,9 +43,12 @@
                                     <div class=" mb-3">
                                         <label class=" mb-2 fw-bold text-muted">Gender :</label>
                                         <select name="gender" class=" form-select">
-                                            <option {{ old('gender',$user->gender) === 'male' ? 'selected' : '' }} value="male">Male</option>
-                                            <option {{ old('gender',$user->gender) === 'female' ? 'selected' : '' }} value="female">Female</option>
-                                            <option {{ old('gender',$user->gender) === 'other' ? 'selected' : '' }} value="other">Other</option>
+                                            <option {{ old('gender', $user->gender) === 'male' ? 'selected' : '' }}
+                                                value="male">Male</option>
+                                            <option {{ old('gender', $user->gender) === 'female' ? 'selected' : '' }}
+                                                value="female">Female</option>
+                                            <option {{ old('gender', $user->gender) === 'other' ? 'selected' : '' }}
+                                                value="other">Other</option>
                                         </select>
                                         @error('gender')
                                             <small class="text-danger">{{ $message }}</small>
@@ -47,7 +57,8 @@
                                     <div class=" mb-3">
                                         <label class=" mb-2 fw-bold text-muted">Phone No :</label>
                                         <input type="number" name="phone_no" class="form-control"
-                                            placeholder="+66 xxx xxx xxx" value="{{ old('phone_no',$user->phone_no) }}">
+                                            placeholder="+66 xxx xxx xxx"
+                                            value="{{ old('phone_no', $user->phone_no) }}">
                                         @error('phone_no')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror
@@ -55,7 +66,8 @@
                                     <div class=" mb-3">
                                         <label class=" mb-2 fw-bold text-muted">Address :</label>
                                         <input type="text" name="address" class="form-control"
-                                            placeholder="1234 Elm Street, Springfield, IL 62704" value="{{ old('address',$user->address) }}" >
+                                            placeholder="1234 Elm Street, Springfield, IL 62704"
+                                            value="{{ old('address', $user->address) }}">
                                         @error('address')
                                             <small class="text-danger">{{ $message }}</small>
                                         @enderror

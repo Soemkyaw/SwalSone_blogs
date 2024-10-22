@@ -82,7 +82,11 @@
                 @foreach ($randomBlogs as $blog)
                     <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                         <div class="card shadow-sm">
-                            <img src="{{ asset('images/free_logo.png') }}" class="card-img-top" alt="...">
+                            @if ($blog->thumbnail)
+                                <img src="{{ asset('storage/'.$blog->thumbnail) }}" class="card-img-top img-fixed-size">
+                            @else
+                                <img src="{{ asset('images/free_logo.png') }}" class="card-img-top img-fixed-size">
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-text fw-bold">{{ $blog->title }}</h5>
                                 <div class=" text-center  my-2 text-muted">

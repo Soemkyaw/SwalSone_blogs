@@ -70,6 +70,7 @@ class UserController extends Controller
     {
         $attributes = $request->all();
         $attributes['slug'] = str_replace(' ', '-', $attributes['author_name']);
+        $attributes['avatar'] = $request->file('avatar')->store('avatars', 'public');
 
         $user->update($attributes);
 

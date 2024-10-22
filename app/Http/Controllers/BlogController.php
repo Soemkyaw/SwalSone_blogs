@@ -24,7 +24,7 @@ class BlogController extends Controller
         $comments = Comment::where('blog_id', $blog->id)->with('blog','user')->latest();
         return view("blogs.show", [
             "blog" => $blog,
-            "randomBlogs" => Blog::inRandomOrder()->with('category','user')->limit(3)->get(),
+            "randomBlogs" => Blog::inRandomOrder()->with('category','user')->where('status','approve')->limit(3)->get(),
             'comments' =>   $comments->paginate(5)
         ]);
     }
@@ -38,7 +38,6 @@ class BlogController extends Controller
 
     public function store(StoreBlogRequest $request)
     {
-        // dd($request->all());
         $attributes = $request->all();
         $attributes['user_id'] = auth()->id();
         $attributes['slug'] = str_replace(' ','-',$attributes['title']);

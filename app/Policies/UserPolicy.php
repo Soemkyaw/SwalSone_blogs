@@ -30,11 +30,11 @@ class UserPolicy
 
     public function delete(User $user, User $model): bool
     {
-        
+
     }
 
     public function blogs(User $authUser, User $user): bool
     {
-        return $authUser->id === $user->id;
+        return $authUser->id === $user->id && !$user->is_admin;
     }
 }

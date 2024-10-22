@@ -2,11 +2,19 @@
 
     <!-- Blog list content -->
     <div class=" container mt-4">
-        <h2>Blog List Page</h2>
-        <p>
-            Browse all the blogs regardless of their status. You can view, edit, or manage blogs that are Pending,
-            Approved, or Canceled.
-        </p>
+        <div class=" d-md-flex align-items-center justify-content-between my-3">
+            <div class="">
+                <h2>Blog List Page</h2>
+                <p>
+                    Browse all the blogs regardless of their status. You can view, edit, or manage blogs that are
+                    Pending,
+                    Approved, or Canceled.
+                </p>
+            </div>
+            <div class="">
+                <a href="/admin/blog/create" class=" btn btn-primary">Create New Blog</a>
+            </div>
+        </div>
 
         <div>
             <!-- Responsive Table -->
@@ -46,7 +54,8 @@
                                             </div>
                                             <div class="mt-3 row pb-5">
                                                 <div class=" col-lg-6">
-                                                    <img src="{{ asset('images/free_logo.png') }}" class="img-fluid">
+                                                    <img src="{{ asset('storage/' . $blog->thumbnail) }}"
+                                                        class="img-fluid">
                                                     <div class="">
                                                         <div class="my-3">
                                                             <a
@@ -120,7 +129,8 @@
                     },
                     success: function(response) {
                         if (response.status === "success") {
-                            let currentBlogStatus = $('#current-blog-' +blogId); // Select the status badge by blog I
+                            let currentBlogStatus = $('#current-blog-' +
+                                blogId); // Select the status badge by blog I
                             currentBlogStatus.removeClass('bg-success bg-danger bg-warning');
 
                             if (response.blogStatus === 'cancel') {

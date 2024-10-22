@@ -1,6 +1,10 @@
 <x-card_wapper class="border border-0 my-2">
     <div class=" d-flex align-items-center">
-        <img src="{{ asset('images/free_logo.png') }}" class=" rounded-circle border" width="50px" height="50px">
+        @if ($cmt->user->avatar)
+            <img src="{{ asset('storage/'.$cmt->user->avatar) }}" class=" rounded-circle border object-fit-cover" width="50px" height="50px">
+        @else
+            <img src="{{ asset('images/user-avatar.png') }}" class=" rounded-circle border object-fit-cover" width="50px" height="50px">
+        @endif
         <div class=" ms-3">
             <a href="" class=" fs-5 text-decoration-none text-dark fw-bold">{{ $cmt->user->author_name }}</a>
         </div>

@@ -11,8 +11,13 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('images/free_logo.png') }}" width="200px" alt="User Image"
+                                    @if ($user->avatar)
+                                        <img src="{{ asset('storage/'.$user->avatar) }}" width="200px" alt="User Image"
                                         class="img-thumbnail">
+                                    @else
+                                        <img src="{{ asset('images/user-avatar.png') }}" width="200px" alt="User Image"
+                                        class="img-thumbnail">
+                                    @endif
                                 </div>
                                 <div class="col-md-8">
                                     <h5 class="card-title">{{ $user->author_name }}</h5>
